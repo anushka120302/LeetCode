@@ -1,20 +1,36 @@
+// class Solution {
+//     public boolean validateStackSequences(int[] pushed, int[] popped) {
+//         if(pushed.length!=popped.length)
+//             return false;
+        
+//         int j=0;
+//         Stack<Integer> st= new Stack<>();
+//         for(int i =0;i<pushed.length;i++)
+//            {
+//                st.push(pushed[i]);
+               
+//                while(!st.isEmpty() && st.peek()==popped[j])
+//                {
+//                    st.pop();
+//                    j++;
+//                }
+//            }
+//            return st.isEmpty();
+//     }
+// }
 class Solution {
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-        if(pushed.length!=popped.length)
-            return false;
+        Stack<Integer> st = new Stack<>(); // Create a stack
         
-        int j=0;
-        Stack<Integer> st= new Stack<>();
-        for(int i =0;i<pushed.length;i++)
-           {
-               st.push(pushed[i]);
-               
-               while(!st.isEmpty() && st.peek()==popped[j])
-               {
-                   st.pop();
-                   j++;
-               }
-           }
-           return st.isEmpty();
+        int j = 0; // Intialise one pointer pointing on popped array
+        
+        for(int val : pushed){
+            st.push(val); // insert the values in stack
+            while(!st.isEmpty() && st.peek() == popped[j]){ // if st.peek() values equal to popped[j];
+                st.pop(); // then pop out
+                j++; // increment j
+            }
+        }
+        return st.isEmpty(); // check if stack is empty return true else false
     }
 }
